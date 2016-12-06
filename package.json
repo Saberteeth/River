@@ -1,0 +1,28 @@
+{
+  "name": "river",
+  "version": "1.0.0",
+  "description": "Control the canvas by typescript",
+  "main": "river.m.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.3",
+    "gulp-uglify": "^2.0.0",
+    "merge2": "^1.0.2",
+    "typescript": "^2.0.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/Saberteeth/River.git"
+  },
+  "keywords": [
+    "typescript",
+    "javascript",
+    "canvas"
+  ],
+  "author": "saberteeth",
+  "license": "ISC"
+}
