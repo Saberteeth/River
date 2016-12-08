@@ -24,3 +24,4 @@ Control the canvas by typescript. U can use the river create canvas app.
 			}
 		}
 River has not only these. Such as ScrollView, Container, animations and Layout u can use. U can use them create a fictitious mobile, even a simple game. 
+![](https://github.com/Saberteeth/River/blob/master/demo.png?raw=true)
