@@ -193,7 +193,6 @@
                 if (this._container.children[i].height > maxHeight) {
                     maxHeight = this._container.children[i].height;
                 }
-
             }
         }
 
