@@ -1,5 +1,5 @@
 # River
-**Version:2.0.1**
+**Version:2.0.2**
 
 Control the canvas by typescript. U can use the river create canvas app.
 
