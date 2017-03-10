@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>view.View</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* Solarized (Dark) */
+/* Authors: Ethan Schoonover: http://ethanschoonover.com/solarized, CodeCatalyst: http://codecatalyst.com/ */
+/* Version: d9a83f4e7a47432baff86e1e7946d9e066cf3d1b (modified) */
+/* https://github.com/CodeCatalyst/mou-theme-solarized */
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+ol,
+ul,
+li,
+img {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+html * {
+  font-family: "ff-din-web-pro-1", "ff-din-web-pro-2", sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  color-profile: sRGB;
+}
+body {
+  min-width: 32em;
+  max-width: 52em;
+  margin: 10px;
+}
+p {
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+strong {
+  font-weight: bold;
+}
+ol,
+ul {
+  margin-left: 2em;
+  margin-bottom: 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 10px;
+}
+li {
+  margin-bottom: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: lighter;
+  text-transform: capitalize;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h2 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h3 {
+  font-size: 23.44px;
+  line-height: 28.128px;
+}
+h4 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h5 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h6 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+img {
+  margin-bottom: 20px;
+}
+h1 img,
+h2 img,
+h3 img,
+h4 img,
+h5 img,
+h6 img,
+p img {
+  margin-bottom: 0;
+}
+pre {
+  margin-bottom: 20px;
+}
+pre,
+code {
+  font-family: monospace;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+h2 {
+  border-bottom: 1px solid;
+}
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: none;
+}
+html * {
+  color: #839496;
+}
+html body {
+  background-color: #002b36;
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #93a1a1;
+  border-color: #839496;
+}
+html a,
+html a:active,
+html a:visited {
+  color: #93a1a1;
+}
+html a:hover {
+  background-color: #073642;
+}
+html pre {
+  color: #93a1a1;
+  background-color: #073642;
+}
+html a,
+html a:active,
+html a:visited,
+html code.url {
+  color: #b58900;
+}
+html h1 {
+  color: #b58900;
+}
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #b58900;
+}
+
+/*
+LICENSE
+
+Solarized Theme for Mou
+
+Copyright (c) 2012 CodeCatalyst, LLC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Solarized
+
+Copyright (c) 2011 Ethan Schoonover
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+</style>
+</head>
+<body>
+<h2>View</h2>
+<p>view.View is basic unit of the river. U can use it show the picture or add the action. A view must in an iContainer can be show itself. The basic iContainer is view.Activity.</p>
+<h3>structure</h3>
+<ul>
+<li>
+view
+<ul>
+<li>View</li>
+</ul>
+</li>
+</ul>
+<h3>attribute</h3>
+<hr />
+<h4>static<strong>[get]</strong></h4>
+<ul>
+<li>DOWN</li>
+<li>MOVE</li>
+<li>UP</li>
+<li>TOUCH_DOWN</li>
+<li>TOUCH_MOVE</li>
+<li>TOUCH_UP</li>
+<li>MOUSE_DOWN</li>
+<li>MOUSE_MOVE</li>
+<li>MOUSE_UP</li>
+<li>FLOAT_MOVE</li>
+<li>FLOAT_END</li>
+</ul>
+<h4>Normal</h4>
+<ul>
+<li>ignoreLayout: boolean;<strong>[get,set]</strong></li>
+<li>id: string;<strong>[get,set]</strong></li>
+<li>alpha: number;<strong>[get,set]</strong></li>
+<li>left: number;<strong>[get,set]</strong></li>
+<li>top: number;<strong>[get,set]</strong></li>
+<li>height: number;<strong>[get,set]</strong></li>
+<li>width: number;<strong>[get,set]</strong></li>
+<li>nowType: ViewType;<strong>[get,set]</strong></li>
+<li>right: number;<strong>[get]</strong></li>
+<li>bottom: number;<strong>[get]</strong></li>
+<li>ctx: CanvasRenderingContext2D;<strong>[get]</strong></li>
+<li>canvas: HTMLCanvasElement;<strong>[get]</strong></li>
+<li>parent: Activity;<strong>[get]</strong></li>
+</ul>
+<h3>Function</h3>
+<ul>
+<li>
+<p>constructor();</p>
+<pre><code>new view.View();
+</code></pre>
+
+</li>
+<li>
+<p>setBackGround(i: HTMLImageElement): void;</p>
+<pre><code>var img = new Image();
+img.src = 'xxx.png';
+this.setBackGround(img);
+</code></pre>
+
+</li>
+<li>
+<p>getIndexForParents(): number;</p>
+<pre><code>var n = this.getIndexForParents;
+</code></pre>
+
+</li>
+<li>
+<p>changeIndexForParents(newIndex: number): void;</p>
+<pre><code>this.changeIndexForParents(2);
+</code></pre>
+
+</li>
+<li>
+<p>addTouchEventListener(listener: (e: TouchEvent) =&gt; boolean): void;</p>
+<pre><code>this.addTouchEventListener((e)=&gt;{...return ture});
+</code></pre>
+
+</li>
+<li>
+<p>addFloatMoveEvent(listener: (e: TouchEvent) =&gt; boolean): void;</p>
+<pre><code>this.addFloatMoveEvent((e)=&gt;{...return ture});
+</code></pre>
+
+</li>
+<li>
+<p>addMouseWheelEventListener(listener: (e: MouseWheelEvent) =&gt; boolean): void;</p>
+<pre><code>this.addMouseWheelEventListener((e)=&gt;{...return ture});
+</code></pre>
+
+</li>
+<li>
+<p>sUpdata(): void;</p>
+<pre><code>this.supdata();
+</code></pre>
+
+</li>
+<li>
+<p>onDraw(ctx: CanvasRenderingContext2D): void;</p>
+<pre><code>this.onDraw = (ctx) =&gt;{...};
+</code></pre>
+
+</li>
+</ul>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

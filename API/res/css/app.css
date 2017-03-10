@@ -1,0 +1,24 @@
+﻿
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+span {
+    font-style: italic;
+    margin:10px;
+}
+
+    span a {
+        text-decoration: none;
+        color:black;
+    }
+
+h2 {
+    background:#1d2162;
+    padding:2px;
+    color:white;
+}
+
+
+
