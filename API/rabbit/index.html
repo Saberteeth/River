@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <title>Rabbit</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <script src="./script/js/flexible_css.debug.js"></script>
+    <script src="./script/js/flexible.debug.js"></script>
+
+    <script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="./script/js/iAngel.js"></script>
+    <script type="text/javascript" src="./script/js/main.js"></script>
+</head>
+
+<body ng-app="rabbit">
+    <div ng-controller="MainController">
+        <div class="title" util-title></div>
+        <div class="content">
+            <div ui-view></div>
+            <div class="nullBlock"></div>
+        </div>
+        <div class="foot" util-foot></div>
+    </div>
+</body>
+
+</html>
