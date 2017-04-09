@@ -224,10 +224,9 @@ var utils;
     utils.utilFoot = utilFoot;
 })(utils || (utils = {}));
 function init() {
-    window.ontouchstart = function () {
-        return true;
-    };
+    document.body.addEventListener('touchstart',function(){});
 }
+addOnloadEvent(init);
 var angel = new iAngel.Angel('rabbit', ['ui.router', home, utils]);
 var home_main = new home.MainController(angel);
 var home_home = new home.HomeController(angel, home_main);
