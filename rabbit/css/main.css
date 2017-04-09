@@ -1,0 +1,165 @@
+.title{
+    background-color:#fff;
+    height: 2rem;
+    width: 100%;
+    color: lightgray;
+    border-bottom: .02rem solid gray;
+}
+.title .glyphicon{
+    font-size: 1.2rem;
+    padding:.4rem .2rem .4rem .2rem;
+}
+.title .glyphicon:active{
+    background-color: lightblue;
+    color: white;
+}
+.title .glyphicon-menu-left{
+    float: left;
+}
+.title .glyphicon-menu-hamburger{
+    float: right;
+}
+.title div{
+    text-align: center;
+    font-size: .8rem;
+    height: 2rem;
+    padding:.4rem;
+}
+
+.content{
+    min-height: 16rem;
+}
+.content .nullBlock{
+    height: 2rem;
+}
+.content #home .top{
+    height: 4rem;
+    background-color: pink;
+}
+.content #home .top img{
+    float: left;
+    height: 3rem;
+    width: 3rem;
+    margin: .5rem;
+    border: .1rem solid white;
+}
+.content #home .top table{
+    float: left;
+    color:white;
+    font-size: .45rem;
+    margin-top: 1.3rem;
+}
+.content #home .top table tr td:first-child{
+    text-align: right;
+}
+.content #home .msg{
+    font-size: .5rem;
+    background-color: white;
+    margin-bottom: .4rem;
+    box-shadow: 0 5px 10px rgba(0,0,0,.8);
+}
+.content #home .msg li div a{
+    color: gray;
+    border: .04rem solid pink;
+    border-radius: .15rem;
+    font-size: .35rem;
+    padding:.1rem .2rem .1rem .2rem;
+}
+.content #home .msg li{
+    height: 1.4rem;
+    color: gray;
+    border-bottom: .02rem solid lightgray;
+}
+.content #home .msg li:active{
+    background-color: lightblue;
+    color:white;
+}
+.content #home .msg div{
+    float: left;
+    padding-left: .6rem;
+    height: 1.4rem;
+    padding-top: .3rem;
+}
+.content #home .msg .glyphicon{
+    font-size: .8rem;
+    float: left;
+    padding:.3rem;
+    color:pink;
+}
+.content #home .msg .textImg{
+    float: left;
+    padding: .29rem;
+    font-size: .6rem;
+    color: pink;
+}
+
+.content #gallery h1{
+    font-size: .8rem;
+    padding:.2rem;
+    color:white;
+    background-color:pink;
+}
+.content #gallery ul{
+    font-size: .4rem;
+    background-color: white;
+    height: 1rem;
+}
+.content #gallery ul li a{
+    color: lightblue;
+    text-decoration: none;
+}
+.content #gallery ul li{
+    float: left;
+    padding-left: .2rem;
+    padding-right: .2rem;
+    height: 1rem;
+    padding-top: .2rem;
+}
+.content #gallery ul li:active{
+    background-color: lightblue;
+    color:white;
+}
+.content #gallery img{
+    width: 80%;
+    margin:10%;
+    border: .3rem solid white;
+}
+
+.foot{
+    background-color:#fff;
+    height: 2rem;
+    position: fixed;
+    bottom:0rem;
+    width: 100%;
+}
+.foot ul{
+    height: 2rem;
+}
+.foot ul a{
+    color: lightgray;
+}
+.foot ul .action{
+    color: gray;
+}
+.foot ul li{
+    float: left;
+    width: 20%;
+    height: 2rem;
+}
+.foot ul li:active{
+    background-color: lightblue;
+    color: white;
+}
+.foot ul li .glyphicon{
+    font-size: 1rem;
+    padding:.5rem;
+    
+}
+
+body{
+    background-color:lightgray!important;
+}
+
+a{
+    text-decoration: none;
+}
