@@ -1,0 +1,126 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* #helloworld {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.80);
+  border: 1px solid black;
+} */
+.iphone {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.80);
+  border: 1px solid black;
+  display: inline-block;
+  background: url(./bgphone.jpeg);
+  background-size: 100% 130%;
+  position: relative;
+}
+
+.head {
+  height: 20px;
+  padding: 2px;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.remove {
+  display: none;
+}
+
+.user {
+  transition-duration: 500ms;
+  height: 605px;
+  width: 400px;
+  top: 24px;
+  position: absolute;
+  background: white;
+}
+
+.button {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  color: white;
+  background: red;
+}
+
+.button:hover {
+  opacity: .8;
+}
+
+.App > h1 {
+  background-color: rgb(28, 44, 124);
+  color: white;
+  padding-top: 10px;
+}
+
+.item:hover {
+  background: lightblue;
+}
+
+.item {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.list {
+  width: 300px;
+  min-height: 200px;
+  position: fixed;
+  top: 60px;
+  background-color: white;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.80);
+  opacity: .9;
+}
+
+.list > h2 {
+  background-color:  rgb(28, 44, 124);
+  color: white;
+  text-align: right;
+  padding: 10px;
+}
+
+.list > ul {
+  text-align: left;
+  padding-right: 40px;
+}
+
+.list > ul > li a {
+  text-decoration: none;
+  color: black;
+}
+

@@ -1,28 +1,25 @@
 {
-  "name": "river",
-  "version": "1.0.0",
-  "description": "Control the canvas by typescript",
-  "main": "river.m.js",
+  "name": "river2",
+  "version": "3.0.2",
+  "private": true,
   "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-typescript": "^3.1.3",
-    "gulp-uglify": "^2.0.0",
-    "merge2": "^1.0.2",
-    "typescript": "^2.0.10"
+    "moment": "^2.22.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-scripts-ts": "2.16.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "test"
+    "start": "react-scripts-ts start",
+    "ts2js": "tsc --d src/river/class/index.ts",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "\u0016https://github.com/Saberteeth/River.git"
-  },
-  "keywords": [
-    "typescript",
-    "javascript",
-    "canvas"
-  ],
-  "author": "saberteeth",
-  "license": "ISC"
+  "devDependencies": {
+    "@types/jest": "^23.0.2",
+    "@types/node": "^10.3.2",
+    "@types/react": "^16.3.17",
+    "@types/react-dom": "^16.0.6",
+    "typescript": "^2.9.1"
+  }
 }
