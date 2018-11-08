@@ -79,7 +79,7 @@ export default class Container extends View implements iContainer {
   }
 
   addChild(v: View): boolean {
-    if (!this.hasID(v) && v.addParent(this.parent) && v.addContainer(this)) {
+    if (!this.hasID(v) && v.addContainer(this)) {
       this._children.push(v);
       v.nowType = ViewType.CHANGE;
       this.nowType = ViewType.CHANGE;
@@ -121,7 +121,7 @@ export default class Container extends View implements iContainer {
   }
 
   removeChild(v: View) {
-    if (v.parent)
+    if (v.activity)
       for (var i = 0; i < this._children.length; i++) {
         if (this._children[i] == v) {
           var child = this._children.splice(i, 1);
@@ -210,10 +210,11 @@ export default class Container extends View implements iContainer {
       }
     }
 
+
     e.offX += this.left;
     e.offY += this.top;
     if (this.onTouchEvent(e)) {
-      this._actionChild = this;
+      // this._actionChild = this;
       return true;
     }
 

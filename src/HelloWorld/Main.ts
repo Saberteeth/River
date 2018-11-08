@@ -2,6 +2,7 @@ import river from '../river/class';
 import widget from '../river/widget/widget';
 import { Move, AnimationUtils } from './Move';
 import { Setting } from './Setting';
+import View from 'src/river/class/view/View';
 
 
 
@@ -51,9 +52,14 @@ export class MainActivity extends river.Activity {
       this.setting.showItem(this.btn.left, this.btn.top, endL, endT);
     }
 
+    this.setting.addBtnClick((type: number) => {
+      this.react && this.react.userItemOpen(type);
+      this.setting.closeItem(this.setting.left, this.setting.top, this.btn.left, this.btn.top);
+    });
+
     this.setting.addTouchEventListener(e=>{
-      if(e.type == 'mouseup') {
-        this.react && this.react.userItemOpen();
+
+      if(e.touchType == View.UP) {
         this.setting.closeItem(this.setting.left, this.setting.top, this.btn.left, this.btn.top);
       }
       return true;

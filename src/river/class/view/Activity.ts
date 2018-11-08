@@ -99,7 +99,7 @@ export default class Activity implements iContainer {
   }
 
   addChild(v: View): boolean {
-    if (!this.hasID(v) && v.addParent(this)) {
+    if (!this.hasID(v) && v.addActivity(this)) {
       this._children.push(v);
       v.nowType = ViewType.CHANGE;
       return true;
@@ -135,7 +135,7 @@ export default class Activity implements iContainer {
   }
 
   removeChild(v: View) {
-    if (v.parent)
+    if (v.container)
       for (var i = 0; i < this._children.length; i++) {
         if (this._children[i] == v) {
           var child = this._children.splice(i, 1);
@@ -211,12 +211,27 @@ export default class Activity implements iContainer {
 
   private initEvent() {
 
+    const getFix = () => {
+      let obj:any = this.canvas;
+      let top = 0;
+      let left = 0;
+
+      for (top = obj.offsetTop, left = obj.offsetLeft; obj = obj.offsetParent;) {
+        top += obj.offsetTop;
+        left += obj.offsetLeft;
+      }
+
+      return {
+        left,
+        top
+      }
+    }
+
     window.ondragstart = () => {
       return false;
     };
 
     window.addEventListener('mousewheel', (e: MouseWheelEvent) => {
-
       if (e.target == this._canvas) {
         for (var i = this._children.length - 1; i >= 0; i--) {
           var child = this._children[i];
@@ -272,12 +287,14 @@ export default class Activity implements iContainer {
 
     window.addEventListener(View.TOUCH_DOWN, (e: TouchEvent) => {
 
-      e.clientX = e.changedTouches[0].clientX + document.body.scrollLeft;
-      e.clientY = e.changedTouches[0].clientY + document.body.scrollTop;
-      e.offX = e.clientX - this.canvas.offsetLeft;
-      e.offY = e.clientY - this.canvas.offsetTop;
-      e.offsetX = e.offX;
-      e.offsetY = e.offY;
+      const { clientY, clientX } = e.changedTouches[0];
+      const { left, top } = getFix();
+      e.offsetY = e.offY = clientY - top;
+      e.offsetX = e.offX = clientX - left;
+      e.clientX = clientX;
+      e.clientY = clientY;
+
+
 
       switch (e.type) {
         case View.MOUSE_DOWN:
@@ -296,18 +313,21 @@ export default class Activity implements iContainer {
 
 
       if (e.target == this._canvas) {
+
         e.preventDefault();
         for (var i = this._children.length - 1; i >= 0; i--) {
           var child = this._children[i];
+
           if (e.offsetX > child.left && e.offsetX < child.right && e.offsetY > child.top && e.offsetY < child.bottom) {
             if (child instanceof Container) {
-              if (child.issue(e)) {
+              if (child.issue({...e})) {
                 this._activityView = child;
                 return;
               } else {
                 continue;
               }
             } else {
+
               if (child.onTouchEvent(e)) {
                 this._activityView = child;
                 return;
@@ -376,12 +396,13 @@ export default class Activity implements iContainer {
     });
 
     window.addEventListener(View.TOUCH_MOVE, (e: TouchEvent) => {
-      e.clientX = e.changedTouches[0].clientX + document.body.scrollLeft;;
-      e.clientY = e.changedTouches[0].clientY + document.body.scrollTop;;
-      e.offX = e.clientX - this.canvas.offsetLeft;
-      e.offY = e.clientY - this.canvas.offsetTop;
-      e.offsetX = e.offX;
-      e.offsetY = e.offY;
+
+      const { clientY, clientX } = e.changedTouches[0];
+      const { left, top } = getFix();
+      e.offsetY = e.offY = clientY - top;
+      e.offsetX = e.offX = clientX - left;
+      e.clientX = clientX;
+      e.clientY = clientY;
 
       switch (e.type) {
         case View.MOUSE_DOWN:
@@ -442,12 +463,12 @@ export default class Activity implements iContainer {
     });
 
     window.addEventListener(View.TOUCH_UP, (e: TouchEvent) => {
-      e.clientX = e.changedTouches[0].clientX + document.body.scrollLeft;
-      e.clientY = e.changedTouches[0].clientY + document.body.scrollTop;
-      e.offX = e.clientX - this.canvas.offsetLeft;
-      e.offY = e.clientY - this.canvas.offsetTop;
-      e.offsetX = e.offX;
-      e.offsetY = e.offY;
+      const { clientY, clientX } = e.changedTouches[0];
+      const { left, top } = getFix();
+      e.offsetY = e.offY = clientY - top;
+      e.offsetX = e.offX = clientX - left;
+      e.clientX = clientX;
+      e.clientY = clientY;
 
       switch (e.type) {
         case View.MOUSE_DOWN:

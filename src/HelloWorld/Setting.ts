@@ -2,6 +2,8 @@
 import river from '../river/class';
 import iAnimations from '../river/interface/iAnimations';
 import animation from '../river/class/animation';
+import widget from '../river/widget/widget';
+
 
 class Change implements iAnimations {
   private runTime: number = 0;
@@ -22,7 +24,7 @@ class Change implements iAnimations {
     this.run(speedW, speedH, v, offW, toW, toH);
   }
 
-  private run(speedW: number, speedH: number, v: river.View, off: number,toW: number, toH: number) {
+  private run(speedW: number, speedH: number, v: river.View, off: number, toW: number, toH: number) {
 
     this.runID = setTimeout(() => {
       v.width += speedW;
@@ -52,15 +54,45 @@ export class AnimationUtils {
 
 export class Setting extends river.Container {
   private _bg: HTMLImageElement;
+  private btn: widget.Button;
+  private btn2: widget.Button;
 
   constructor() {
     super();
     this.alpha = 0;
-    this.width = 50;
-    this.height = 50;
     this._bg = new Image();
-    this._bg.src = 'float.svg';
+    this._bg.src = 'setting.svg';
     this.setBackGround(this._bg);
+
+    this.btn = new widget.Button();
+    this.btn._btn_bg.src = `adduser.svg`;
+    this.btn._btn_bg_press.src = `adduser.svg`;
+    this.btn.width = 50;
+    this.btn.height = 50;
+    this.btn.txt = '';
+    this.btn.top = this.height / 2 - 25;
+    this.btn.left = 50;
+    this.btn.alpha = 0;
+
+
+    this.btn2 = new widget.Button();
+    this.btn2._btn_bg.src = `adduser_press.svg`;
+    this.btn2._btn_bg_press.src = `adduser_press.svg`;
+    this.btn2.width = 40;
+    this.btn2.height = 50;
+    this.btn2.txt = '';
+    this.btn2.top = this.height / 2 - 25;
+    this.btn2.left = 160;
+    this.btn2.alpha = 0;
+
+    this.addChild(this.btn);
+    this.addChild(this.btn2);
+  }
+
+
+  addBtnClick(func: any) {
+    this.btn.addClickEvent(() => func(1));
+    this.btn2.addClickEvent(() => func(2));
   }
 
   bindOver(func: Function) {
@@ -69,14 +101,22 @@ export class Setting extends river.Container {
 
   showItem(x: number, y: number, endX: number, endY: number) {
     AnimationUtils.CHANGE.play(50, 50, 250, 150, 200, this);
-    AnimationUtils.ALPHA.play(0,1,200, this);
+    AnimationUtils.ALPHA.play(0, 1, 200, this);
     AnimationUtils.TRANS.play(x, endX, y, endY, 200, this);
+    setTimeout(() => {
+      this.children.forEach(e => {
+        e.alpha = 1;
+      })
+    }, 200);
   }
 
   closeItem(x: number, y: number, endX: number, endY: number) {
     AnimationUtils.CHANGE.play(250, 150, 50, 50, 200, this);
-    AnimationUtils.ALPHA.play(1,0,200, this);
+    AnimationUtils.ALPHA.play(1, 0, 200, this);
     AnimationUtils.TRANS.play(x, endX, y, endY, 200, this);
+    this.children.forEach(e => {
+      e.alpha = 0;
+    })
   }
 }
 

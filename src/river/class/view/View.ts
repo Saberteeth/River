@@ -6,11 +6,9 @@ import TouchEvent from "../../interface/TouchEvent";
 
 
 /**
-     * 显示对象的封装类，同时持有自我绘制能力，如需要自我绘制需为 onDraw: (ctx: CanvasRenderingContext2D) => void;字段赋值
-     */
+ * 显示对象的封装类，同时持有自我绘制能力，如需要自我绘制需为 onDraw: (ctx: CanvasRenderingContext2D) => void;字段赋值
+ */
 export default class View {
-
-  ignoreLayout: boolean = false;
   /**
    * 触摸开始
    */
@@ -108,21 +106,15 @@ export default class View {
   /**
    * 获取在activity视图中的次序
    */
-  getIndexForParents(): number {
-    if (this.parent) {
-      return this.parent.getChildIndex(this);
-    }
-
-    return -1;
-  }
+  getIndexForParents = () => this.container ? this.container.getChildIndex(this) : -1;
 
   /**
    * 改变位置
    */
   changeIndexForParents(newIndex: number) {
-    if (this.parent) {
-      var now = this.parent.getChildIndex(this);
-      this.parent.changeChildIndex(now, newIndex);
+    if (this.container) {
+      const now = this.container.getChildIndex(this);
+      this.container.changeChildIndex(now, newIndex);
     }
   }
 
@@ -142,6 +134,9 @@ export default class View {
   get right(): number {
     return this.left + this.width;
   }
+  set right(r: number) {
+    this.left = r - this.width;
+  }
 
   /**
    * 显示对象下边距
@@ -149,12 +144,15 @@ export default class View {
   get bottom(): number {
     return this.top + this.height;
   }
+  set bottom(b: number) {
+    this.top = b - this.height;
+  }
 
 
   private _nowType: ViewType;
   private _canvas: HTMLCanvasElement;
   private _touchListener: (e: TouchEvent) => boolean;
-  private _parent: Activity | null;
+  private _activity: Activity | null;
   private _container: Container | null;
   private _floatMoveListener: (e: TouchEvent) => boolean;
   private _mouseWheelListener: (e: MouseWheelEvent) => boolean;
@@ -172,29 +170,27 @@ export default class View {
   }
 
   /**
-   * 父activity对象
+   * 获得顶层activity对象。
    */
-  get parent(): Activity | null {
-    if (this.container) {
-      return this.container.parent;
-    }
-
-    return this._parent;
+  get activity(): Activity | null {
+    return this.container ? (this.container instanceof Activity ? this.container : this.container.activity) : this._activity
   }
 
-  get container(): Container | null {
-    return this._container;
+  /**
+   * 获得承载该view的容器对象。
+   */
+  get container(): Container | Activity | null {
+    return this._container ? this._container : this._activity
   }
 
   /**
    * 此函数由activity控制操作，请避免使用
    */
-  addParent(a: Activity | null): boolean {
-    if (!this._parent) {
-      this._parent = a;
+  addActivity(a: Activity | null): boolean {
+    if (!this._activity) {
+      this._activity = a;
       return true;
     }
-
     return false;
   }
 
@@ -203,7 +199,6 @@ export default class View {
       this._container = c;
       return true;
     }
-
     return false;
   }
 
@@ -211,7 +206,7 @@ export default class View {
    * 此函数由activity控制操作，请避免使用
    */
   removeParent() {
-    this._parent = null;
+    this._activity = null;
     this._container = null;
   }
 
@@ -247,12 +242,13 @@ export default class View {
   }
 
   set nowType(vt: ViewType) {
-
     if (this._container && vt == ViewType.CHANGE) {
       this._container.nowType = ViewType.CHANGE;
     }
     this._nowType = vt;
   }
+
+  ignoreLayout: boolean = false;
 
   constructor() {
     this.init();
@@ -350,6 +346,5 @@ export default class View {
       this.onDraw(ctx);
 
     this.nowType = ViewType.SUCCESS;
-
   }
 }

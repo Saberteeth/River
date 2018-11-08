@@ -82,7 +82,7 @@ module widget {
           case river.View.UP:
             this.setBackGround(this._btn_bg);
 
-            if (this.parent && this._clickFun && e.target == this.parent.canvas && e.offX > this.left && e.offX < this.right && e.offY > this.top && e.offY < this.bottom) {
+            if (this.activity && this._clickFun && e.target == this.activity.canvas && e.offX > this.left && e.offX < this.right && e.offY > this.top && e.offY < this.bottom) {
               this._clickFun();
             }
             break;

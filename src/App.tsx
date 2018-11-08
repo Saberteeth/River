@@ -13,31 +13,32 @@ class App extends React.Component {
   }
 
   state = {
-    time: moment().format("a h:mm").replace('am','上午').replace('pm','下午'),
+    time: moment().format("a h:mm").replace('am', '上午').replace('pm', '下午'),
     isUserListShow: false,
     isRemove: true,
+    type: 1,
     users: [{
       name: 'Harry Potter',
-      phoneNunber: '13141426881',
+      phoneNumber: '13141426881',
     },
     {
       name: 'Arthas',
-      phoneNunber: '13141426882',
+      phoneNumber: '13141426882',
     }]
   }
 
   userItemClose() {
     this.setState({ isUserListShow: false });
-    setTimeout(()=>{
+    setTimeout(() => {
       this.setState({ isRemove: true });
-    },500);
+    }, 500);
   }
 
-  userItemOpen() {
+  userItemOpen(type: number) {
     this.setState({ isRemove: false });
-    setTimeout(()=>{
-      this.setState({ isUserListShow: true });
-    },0)
+    setTimeout(() => {
+      this.setState({ isUserListShow: true, type });
+    }, 0)
   }
 
   public render() {
@@ -46,13 +47,29 @@ class App extends React.Component {
         <Title name="Hello World" />
         <div className="iphone">
           <div className="head">
-          <div style={{float: 'left'}}>中国移动</div>
-          <div style={{float: 'right'}}>
-            {moment().format("a h:mm").replace('am','上午').replace('pm','下午')}
-          </div>
+            <div style={{ float: 'left' }}>中国移动</div>
+            <div style={{ float: 'right' }}>
+              {moment().format("a h:mm").replace('am', '上午').replace('pm', '下午')}
+            </div>
           </div>
           <canvas width="400" height="600" id="helloworld" />
-          <User isRemove={this.state.isRemove} isShow={this.state.isUserListShow} users={this.state.users} onClick={()=>{ this.userItemClose() }}/>
+          <User type={this.state.type} onAddUser={(e: any) => {
+            const { value: name }: any = document.getElementById('name');
+            const { value: phoneNumber }: any = document.getElementById('phoneNumber');
+            if (!name || !phoneNumber || phoneNumber.length !== 11) {
+              console.log('错误的号码或用户名');
+              return;
+            }
+            this.setState({
+              users: [{
+                name,
+                phoneNumber
+              },
+              ...this.state.users
+              ]
+            });
+
+          }} isRemove={this.state.isRemove} isShow={this.state.isUserListShow} users={this.state.users} onClick={() => { this.userItemClose() }} />
         </div>
         <div className="list">
           <h2>DEMO</h2>
@@ -70,7 +87,7 @@ class App extends React.Component {
       this.main = createActivity('helloworld');
       this.main.react = this;
       this.main.addTimer(dt => {
-        const newTime = moment().format("a h:mm").replace('am','上午').replace('pm','下午');
+        const newTime = moment().format("a h:mm").replace('am', '上午').replace('pm', '下午');
         this.state.time !== newTime && this.setState({ time: newTime });
       });
       this.main.onCreate();
@@ -78,13 +95,21 @@ class App extends React.Component {
   }
 }
 
-function User({ onClick, users = [], isShow, isRemove }: any) {
+function User({ onClick, users = [], isShow, isRemove, onAddUser, type = 1 }: any) {
 
   return (
-    <div className={`user ${isShow ? '': 'hide'} ${isRemove ? 'remove' : ''}`}>
-      {users.map((element:any, key: number) => (<div className="item" key={key}>
-        <b>{element.name} </b><div style={{ float: 'right' }}>{element.phoneNunber}</div>
-      </div>))}
+    <div className={`user ${isShow ? '' : 'hide'} ${isRemove ? 'remove' : ''}`}>
+      {
+        type === 1 ? <div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
+          姓名：<input id="name" type="text" /> 电话号：<input id="phoneNumber" type="text" />
+        </div> : null
+      }
+      <div style={{ height: '475px', overflow: 'scroll' }}>
+        {users.map((element: any, key: number) => (<div className="item" key={key}>
+          <b>{element.name} </b><div style={{ float: 'right' }}>{element.phoneNumber}</div>
+        </div>))}
+      </div>
+      {type === 1 ? <div className="button" onClick={onAddUser} style={{ bottom: '42px', background: 'rgb(75, 95, 194)' }}>添 加</div> : null}
       <div className="button" onClick={onClick}>确 认</div>
     </div>
   )

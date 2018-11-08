@@ -25,7 +25,7 @@ export default class iPen {
   }
 
   /**
-   * 准lian'xi备绘图
+   * 准备绘图
    * @param color 颜色
    * @param lineWidth 线宽
    */
