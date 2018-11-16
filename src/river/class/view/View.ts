@@ -1,6 +1,7 @@
 import ViewType from '../../enum/ViewType';
 import Container from '../view/Container';
 import Activity from '../../class/view/Activity';
+import { Animation } from '../animation/Animation';
 
 import TouchEvent from "../../interface/TouchEvent";
 
@@ -94,7 +95,15 @@ export default class View {
     return this._alpha;
   }
 
+
+
   private _img: HTMLImageElement;
+
+  animations: Animation[]= [];
+
+  addAnimations(a: Animation){
+    this.animations.push(a);
+  }
   /**
    * 设置纹理背景
    */
@@ -173,14 +182,14 @@ export default class View {
    * 获得顶层activity对象。
    */
   get activity(): Activity | null {
-    return this.container ? (this.container instanceof Activity ? this.container : this.container.activity) : this._activity
+    return this.container ? (this.container instanceof Activity ? this.container : this.container.activity) : this._activity;
   }
 
   /**
    * 获得承载该view的容器对象。
    */
   get container(): Container | Activity | null {
-    return this._container ? this._container : this._activity
+    return this._container ? this._container : this._activity;
   }
 
   /**
@@ -226,12 +235,12 @@ export default class View {
 
   set width(w: number) {
     this._canvas.width = w;
-    this.sUpdata()
+    this.sUpdata();
   }
 
   set height(h: number) {
     this._canvas.height = h;
-    this.sUpdata()
+    this.sUpdata();
   }
 
   /**
@@ -342,8 +351,7 @@ export default class View {
       }
     }
 
-    if (this.onDraw)
-      this.onDraw(ctx);
+    if (this.onDraw) this.onDraw(ctx);
 
     this.nowType = ViewType.SUCCESS;
   }

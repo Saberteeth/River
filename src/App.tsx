@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 import { createActivity, MainActivity } from './HelloWorld/Main';
 import Title from './HelloWorld/Title';
+import LoadingView from './LoadingView';
 
 var moment = require('moment');
 
@@ -17,6 +18,7 @@ class App extends React.Component {
     isUserListShow: false,
     isRemove: true,
     type: 1,
+    loading: true,
     users: [{
       name: 'Harry Potter',
       phoneNumber: '13141426881',
@@ -56,11 +58,13 @@ class App extends React.Component {
           <User type={this.state.type} onAddUser={(e: any) => {
             const { value: name }: any = document.getElementById('name');
             const { value: phoneNumber }: any = document.getElementById('phoneNumber');
-            if (!name || !phoneNumber || phoneNumber.length !== 11) {
+            if (!name || !phoneNumber ) {
               console.log('错误的号码或用户名');
               return;
             }
+            this.loadEnd();
             this.setState({
+              loading: true,
               users: [{
                 name,
                 phoneNumber
@@ -70,6 +74,7 @@ class App extends React.Component {
             });
 
           }} isRemove={this.state.isRemove} isShow={this.state.isUserListShow} users={this.state.users} onClick={() => { this.userItemClose() }} />
+          {this.state.loading ? <LoadingView /> : null}
         </div>
         <div className="list">
           <h2>DEMO</h2>
@@ -82,7 +87,15 @@ class App extends React.Component {
     );
   }
 
+  public loadEnd() {
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 5000);
+  }
+
   public componentDidMount() {
+
+    this.loadEnd();
     if (!this.main) {
       this.main = createActivity('helloworld');
       this.main.react = this;

@@ -7,12 +7,11 @@ import TouchEvent from "../../interface/TouchEvent";
 export default class Container extends View implements iContainer {
   private _children: Array<View>;
   private _actionChild: View | null;
-
   private _layout: iLayout;
 
   removeChildrenByClass(clazzs: Array<Function>) {
-    A: for (var x = 0; x < this._children.length; x++) {
-      for (var y = 0; y < clazzs.length; y++) {
+    A: for (let x = 0; x < this._children.length; x++) {
+      for (let y = 0; y < clazzs.length; y++) {
         if (this._children[x].constructor == clazzs[y]) {
           this._children.splice(x, 1);
           x--;
@@ -41,8 +40,8 @@ export default class Container extends View implements iContainer {
 
   contianerDraw(ctx: CanvasRenderingContext2D | null) {
     this.draw(ctx);
-    for (var i = 0; i < this._children.length; i++) {
-      var child = this._children[i];
+    for (let i = 0; i < this._children.length; i++) {
+      let child = this._children[i];
       if (child.nowType == ViewType.CHANGE) {
         if (child instanceof Container) {
           child.contianerDraw(child.canvas.getContext("2d"));
@@ -60,7 +59,7 @@ export default class Container extends View implements iContainer {
   }
 
   hasID(v: View): boolean {
-    for (var i = 0; i < this._children.length; i++) {
+    for (let i = 0; i < this._children.length; i++) {
       if (v.id && v.id == this._children[i].id) {
         return true;
       }
@@ -69,7 +68,7 @@ export default class Container extends View implements iContainer {
   }
 
   getViewByID(id: string): View | null {
-    for (var i = 0; i < this._children.length; i++) {
+    for (let i = 0; i < this._children.length; i++) {
       if (id && id == this._children[i].id) {
         return this._children[i];
       }
@@ -90,7 +89,7 @@ export default class Container extends View implements iContainer {
   }
 
   get maxIndex(): number {
-    var index = this._children.length - 1;
+    let index = this._children.length - 1;
     if (index > 0) {
       return this._children.length - 1;
     } else {
@@ -99,19 +98,19 @@ export default class Container extends View implements iContainer {
   }
 
   changeChildIndex(nowIndex: number, newIndex: number) {
-    var index = newIndex;
+    let index = newIndex;
     if (index < 0) {
       index = 0;
     } else if (index >= this._children.length) {
       index = this._children.length - 1;
     }
 
-    var child = this._children.splice(nowIndex, 1);
+    const child = this._children.splice(nowIndex, 1);
     this._children.splice(index, 0, child[0]);
   }
 
   getChildIndex(v: View): number {
-    for (var i = 0; i < this._children.length; i++) {
+    for (let i = 0; i < this._children.length; i++) {
       if (v == this._children[i]) {
         return i;
       }
@@ -122,9 +121,9 @@ export default class Container extends View implements iContainer {
 
   removeChild(v: View) {
     if (v.activity)
-      for (var i = 0; i < this._children.length; i++) {
+      for (let i = 0; i < this._children.length; i++) {
         if (this._children[i] == v) {
-          var child = this._children.splice(i, 1);
+          const child = this._children.splice(i, 1);
           child[0].removeParent();
         }
       }
@@ -133,8 +132,8 @@ export default class Container extends View implements iContainer {
   }
 
   sUpdataViews(clazzs: Array<Function>) {
-    A: for (var x = 0; x < this._children.length; x++) {
-      for (var y = 0; y < clazzs.length; y++) {
+    A: for (let x = 0; x < this._children.length; x++) {
+      for (let y = 0; y < clazzs.length; y++) {
         if (this._children[x].constructor == clazzs[y]) {
           this._children[x].sUpdata();
           clazzs.splice(y, 1);
@@ -184,8 +183,8 @@ export default class Container extends View implements iContainer {
       }
     }
 
-    for (var i = this._children.length - 1; i >= 0; i--) {
-      var child = this._children[i];
+    for (let i = this._children.length - 1; i >= 0; i--) {
+      const child = this._children[i];
       if (
         e.offX > child.left &&
         e.offX < child.right &&

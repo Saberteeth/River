@@ -9,7 +9,7 @@ import Container from './Container';
 
 
 /**
-   * 核心界面控制器，类似于Android中的Activity对象，拥有对添加其中的View对象的控制作用，
+   * 核心界面控制器，拥有对添加其中的View对象的控制作用，
    * 并实际控制核心显示canvas的绘制，以及touch等事件分发。
    */
 export default class Activity implements iContainer {
@@ -55,8 +55,8 @@ export default class Activity implements iContainer {
   }
 
   sUpdataViews(clazzs: Array<Function>) {
-    A: for (var x = 0; x < this._children.length; x++) {
-      for (var y = 0; y < clazzs.length; y++) {
+    A: for (let x = 0; x < this._children.length; x++) {
+      for (let y = 0; y < clazzs.length; y++) {
         if (this._children[x].constructor == clazzs[y]) {
           this._children[x].sUpdata();
           clazzs.splice(y, 1);
@@ -67,8 +67,8 @@ export default class Activity implements iContainer {
   }
 
   removeChildrenByClass(clazzs: Array<Function>) {
-    A: for (var x = 0; x < this._children.length; x++) {
-      for (var y = 0; y < clazzs.length; y++) {
+    A: for (let x = 0; x < this._children.length; x++) {
+      for (let y = 0; y < clazzs.length; y++) {
         if (this._children[x].constructor == clazzs[y]) {
           this._children.splice(x, 1);
           x--;
@@ -79,7 +79,7 @@ export default class Activity implements iContainer {
   }
 
   hasID(v: View): boolean {
-    for (var i = 0; i < this._children.length; i++) {
+    for (let i = 0; i < this._children.length; i++) {
       if (v.id && v.id == this._children[i].id) {
         console.log(v.id + '已经被使用');
         return true;
@@ -89,7 +89,7 @@ export default class Activity implements iContainer {
   }
 
   getViewByID(id: string): View | null {
-    for (var i = 0; i < this._children.length; i++) {
+    for (let i = 0; i < this._children.length; i++) {
       if (id && id == this._children[i].id) {
         return this._children[i];
       }
@@ -113,19 +113,19 @@ export default class Activity implements iContainer {
   }
 
   changeChildIndex(nowIndex: number, newIndex: number) {
-    var index = newIndex;
+    let index = newIndex;
     if (index < 0) {
       index = 0;
     } else if (index >= this._children.length) {
       index = this._children.length - 1;
     }
 
-    var child = this._children.splice(nowIndex, 1);
+    const child = this._children.splice(nowIndex, 1);
     this._children.splice(index, 0, child[0]);
   }
 
   getChildIndex(v: View): number {
-    for (var i = 0; i < this._children.length; i++) {
+    for (let i = 0; i < this._children.length; i++) {
       if (v == this._children[i]) {
         return i;
       }
@@ -136,9 +136,9 @@ export default class Activity implements iContainer {
 
   removeChild(v: View) {
     if (v.container)
-      for (var i = 0; i < this._children.length; i++) {
+      for (let i = 0; i < this._children.length; i++) {
         if (this._children[i] == v) {
-          var child = this._children.splice(i, 1);
+          const child = this._children.splice(i, 1);
           child[0].removeParent();
         }
       }
@@ -179,40 +179,60 @@ export default class Activity implements iContainer {
 
 
   private _lastTime: number = 0;
+  private _dt: number = 0;
   private run(a: Activity) {
     if (a._ctx)
       a._ctx.clearRect(0, 0, a._canvas.width, a._canvas.height);
-    for (var i = 0; i < a._children.length; i++) {
-      var child = a._children[i];
+    for (let i = 0; i < a._children.length; i++) {
+      const child = a._children[i];
       if (child.nowType == ViewType.CHANGE) {
         if (child instanceof Container) {
           (<Container>child).contianerDraw(child.canvas.getContext('2d'));
         } else {
           child.draw(child.canvas.getContext('2d'));
         }
+
+        // const as: any[] = [];
+
+
+        // child.animations = as;
       }
 
       if (this._ctx)
         this._ctx.drawImage(child.canvas, child.left, child.top);
+
+
+      const anis: any[] = [];
+      child.animations.forEach(e => {
+        if (e.step(this._dt)) {
+          if(e.run(child) || e.isForever) {
+            anis.push(e);
+          }
+        } else {
+          anis.push(e);
+        }
+      });
+
+      child.animations = anis;
+
     }
 
 
     requestAnimationFrame((rt: number) => {
-      var dt = rt - this._lastTime;
+      this._dt = rt - this._lastTime;
       this._lastTime = rt;
 
-      for (var i = 0; i < this._timers.length; i++) {
-        this._timers[i](dt);
+      for (let i = 0; i < this._timers.length; i++) {
+        this._timers[i](this._dt);
       }
 
-      if(this._isRun) a.run(a);
+      if (this._isRun) a.run(a);
     })
   }
 
   private initEvent() {
-
     const getFix = () => {
-      let obj:any = this.canvas;
+      let obj: any = this.canvas;
       let top = 0;
       let left = 0;
 
@@ -233,8 +253,8 @@ export default class Activity implements iContainer {
 
     window.addEventListener('mousewheel', (e: MouseWheelEvent) => {
       if (e.target == this._canvas) {
-        for (var i = this._children.length - 1; i >= 0; i--) {
-          var child = this._children[i];
+        for (let i = this._children.length - 1; i >= 0; i--) {
+          const child = this._children[i];
           if (e.offsetX > child.left && e.offsetX < child.right && e.offsetY > child.top && e.offsetY < child.bottom) {
             if (this._children[i].onMouseWheelEvent(e)) {
               break;
@@ -265,8 +285,8 @@ export default class Activity implements iContainer {
 
       //e.touchType
       if (e.target == this._canvas)
-        for (var i = this._children.length - 1; i >= 0; i--) {
-          var child = this._children[i];
+        for (let i = this._children.length - 1; i >= 0; i--) {
+          const child = this._children[i];
           if (e.offsetX > child.left && e.offsetX < child.right && e.offsetY > child.top && e.offsetY < child.bottom) {
             if (child instanceof Container) {
               if (child.issue(e)) {
@@ -294,8 +314,6 @@ export default class Activity implements iContainer {
       e.clientX = clientX;
       e.clientY = clientY;
 
-
-
       switch (e.type) {
         case View.MOUSE_DOWN:
         case View.TOUCH_DOWN:
@@ -315,12 +333,12 @@ export default class Activity implements iContainer {
       if (e.target == this._canvas) {
 
         e.preventDefault();
-        for (var i = this._children.length - 1; i >= 0; i--) {
-          var child = this._children[i];
+        for (let i = this._children.length - 1; i >= 0; i--) {
+          const child = this._children[i];
 
           if (e.offsetX > child.left && e.offsetX < child.right && e.offsetY > child.top && e.offsetY < child.bottom) {
             if (child instanceof Container) {
-              if (child.issue({...e})) {
+              if (child.issue({ ...e })) {
                 this._activityView = child;
                 return;
               } else {
@@ -367,8 +385,8 @@ export default class Activity implements iContainer {
       }
 
       if (e.target == this._canvas) {
-        var child: View | null = null;
-        for (var i = this._children.length - 1; i >= 0; i--) {
+        let child: View | null = null;
+        for (let i = this._children.length - 1; i >= 0; i--) {
           child = this._children[i];
           if (e.offsetX > child.left && e.offsetX < child.right && e.offsetY > child.top && e.offsetY < child.bottom) {
             if (child.onFloatEvent(e)) {
