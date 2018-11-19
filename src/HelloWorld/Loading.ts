@@ -23,7 +23,7 @@ export class Loading extends river.Activity {
       lastColor = nowColor;
       circ.left = this.width;
       circ.top = this.height;
-      const arc = new Arc(r,r, r - circ.width / 2);
+      const arc = new Arc(r,r, r - circ.width / 1.4);
       arr.push(circ);
       arcs.push(arc);
       circ.alpha = 0;
