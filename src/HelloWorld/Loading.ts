@@ -10,33 +10,45 @@ function colorTrend(where = 0, start = [100, 255, 0, 0.4], end = [100, 0, 255, 1
 
 
 export class Loading extends river.Activity {
-  public onCreate() {
+  public onCreate(start =  [100, 255, 0, 0.4], end = [100, 0, 255, 1]) {
     const size = 7;
     const arr: any[] = [];
     const arcs: any[] = [];
     const r = this.width / 2;
     let lastColor = null;
     for (let i = 0; i < size; i += 1) {
-      const rgb = colorTrend(i / size);
+      const rgb = colorTrend(i / size, start, end);
       const nowColor = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
-      const circ = new Circle(14, 14, nowColor, lastColor || nowColor);
+      const circ = new Circle(12, 12, nowColor, lastColor || nowColor);
       lastColor = nowColor;
       circ.left = this.width;
       circ.top = this.height;
-      const arc = new Arc(r,r, r - circ.width / 1.4);
+      const arc = new Arc(r, r, r - circ.width / 1.2);
       arr.push(circ);
       arcs.push(arc);
       circ.alpha = 0;
-      setTimeout(() => {
-        circ.addAnimations(arc);
-        circ.alpha = .6;
-      }, 180 * i)
     }
 
-    for(let i= size-1; i>=0;i--) {
+    for (let i = size - 1; i >= 0; i--) {
       this.addChild(arr[i]);
     }
 
+    setTimeout(()=>{
+      this.playAnimation(arr, arcs);
+    },0);
+  }
+
+  async playAnimation(arr:any[] = [], arcs:any[] = [], index = 0) {
+    if(index > arr.length - 1) return true;
+    arr[index].addAnimations(arcs[index]);
+    arr[index].alpha = .6;
+
+    const promise = new Promise((res)=>{
+      setTimeout(()=>{
+        res(this.playAnimation(arr, arcs, index + 1));
+      }, 180);
+    });
+    return await promise;
   }
 }
 
@@ -52,21 +64,34 @@ export class Circle extends river.View {
   }
 
   colorTrend() {
-    if(this.container) {
+    if (this.container) {
       const x = this.container.width / 2;
       const l = this.left - x;
       const t = this.top - x;
-      if(l > 0 && t > 0) return [0,this.height,this.width,0];
-      if(l < 0 && t < 0) return [this.width,0,0,this.height];
-      if(l < 0 && t > 0) return [0,0,this.width,this.height];
-      if(l > 0 && t < 0) return [this.width,this.height,0,0];
+
+      const bL = -l + x;
+      const bT = -t + x;
+      const toSmale = this.width / this.container.width;
+      const x1 = t > 0 ? 0 : this.width;
+      const y1 = l > 0 ? this.height : 0;
+      const x2 = - bL * toSmale;
+      const y2 = bT * toSmale;
+      return [ x1, y1, x2, y2 ];
+
+
+
+      // if (l > 0 && t > 0) return [0, this.height, this.width, 0];
+      // if (l < 0 && t > 0) return [0, 0, this.width, this.height];
+
+      // if (l < 0 && t < 0) return [this.width, 0, 0, this.height];
+      // if (l > 0 && t < 0) return [this.width, this.height, 0, 0];
     }
-    return [0,0,this.width,this.height];
+    return [0, 0, this.width, this.height];
   }
 
   onDraw = (ctx: CanvasRenderingContext2D) => {
     const trend = this.colorTrend();
-    const lg = ctx.createLinearGradient(trend[0],trend[1],trend[2],trend[3]);
+    const lg = ctx.createLinearGradient(trend[0], trend[1], trend[2], trend[3]);
 
     lg.addColorStop(0, this.color2 || this.color1);
     lg.addColorStop(1, this.color1);

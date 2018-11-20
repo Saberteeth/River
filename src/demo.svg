@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="469px" height="379px" viewBox="0 0 469 379" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>椭圆形</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="椭圆形" transform="translate(1.000000, 1.000000)">
+            <path d="M153.5,327 C238.275709,327 307,258.275709 307,173.5 C307,94.6475099 247.543652,29.6817939 171.016616,20.9885121 C165.268079,20.3354926 159.423219,20 153.5,20 C68.7242909,20 0,88.7242909 0,173.5 C0,258.275709 68.7242909,327 153.5,327 Z" id="Oval" stroke="#979797" stroke-width="1"></path>
+            <circle id="Oval-2" stroke="#979797" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd" cx="154.5" cy="20.5" r="20.5"></circle>
+            <circle id="Oval-3" stroke="#979797" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd" cx="308" cy="170" r="32"></circle>
+            <circle id="Oval-4" stroke="#979797" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd" cx="154" cy="327" r="50"></circle>
+            <path d="M156.5,172.5 L309.5,172.5" id="Line-2" stroke="#979797" stroke-width="1" stroke-linecap="square"></path>
+            <path id="Line" d="M310.5,49 L306,58 L315,58 L310.5,49 Z M311,172.5 L311,57.5 L311,57 L310,57 L310,57.5 L310,172.5 L310,173 L311,173 L311,172.5 Z" fill="#979797" fill-rule="nonzero"></path>
+            <path id="Line-3" d="M241.461566,326.429802 L251.383028,324.752124 L246.072301,317.486026 L241.461566,326.429802 Z M311.075166,256.236341 C301.750501,271.261192 293.022598,282.837676 284.896447,290.963827 C277.627993,298.232281 265.318155,308.263979 247.97378,321.050772 L247.571327,321.347473 L248.164728,322.15238 L248.567182,321.855679 C265.948608,309.04157 278.291783,298.982705 285.603553,291.670934 C293.790768,283.483719 302.562866,271.848616 311.924834,256.763659 L312.188493,256.338825 L311.338825,255.811507 L311.075166,256.236341 Z" fill="#979797" fill-rule="nonzero"></path>
+            <text id="渐变颜色方向，-于旋转半径成直角。" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#8B8B8B">
+                <tspan x="322" y="102">渐变颜色方向，</tspan>
+                <tspan x="322" y="122">于旋转半径成直角。</tspan>
+            </text>
+            <text id="旋转方向，并模拟物理下坠。-在底部时转速" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#8B8B8B">
+                <tspan x="294" y="316">旋转方向，并模拟物理下坠。</tspan>
+                <tspan x="294" y="336">在底部时转速到达峰值。</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

@@ -30,7 +30,7 @@ export default class Arc extends Animation {
     const x = (((this.index + 90) % 360) / 360);
     const off = Math.floor(((- x * x) + x) * 22);
     this.index = this.index + 1 + off;
-    v.height = v.width = this.rW * (1 + off / 10);
+    v.height = v.width = this.rW * (1 + off / 6);
 
 
     if(this.index < 360) return true;

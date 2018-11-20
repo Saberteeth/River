@@ -17,6 +17,7 @@ export default class LoadingView extends React.Component {
   render() {
     return (<div className="loading">
       <canvas className="load" width="50" height="50" id="loading" />
+      <div style={{ paddingTop: '26px' }}><b className="loading_txt">Loading</b></div>
     </div>)
   }
 }

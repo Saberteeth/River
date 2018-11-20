@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.loading_txt {
+  background: linear-gradient(to left, rgb(100,255,0), rgb(100,0,255));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* 100, 255, 0, 0.4], end = [100, 0, 255, 1 */
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -23,8 +31,13 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* #helloworld {
@@ -71,7 +84,7 @@
   width: 400px;
   top: 24px;
   position: absolute;
-  background: rgba(255,255,255,.8);
+  background: rgba(255, 255, 255, .8);
 }
 
 .load {
@@ -121,7 +134,7 @@
 }
 
 .list > h2 {
-  background-color:  rgb(28, 44, 124);
+  background-color: rgb(28, 44, 124);
   color: white;
   text-align: right;
   padding: 10px;
