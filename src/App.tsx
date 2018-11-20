@@ -4,6 +4,7 @@ import { createActivity, MainActivity } from './HelloWorld/Main';
 import Title from './HelloWorld/Title';
 import LoadingView from './LoadingView';
 import icon from './demo.svg';
+import logo from './logo.png';
 
 const moment = require('moment');
 
@@ -78,7 +79,7 @@ class App extends React.Component {
           {this.state.loading ? <LoadingView /> : null}
         </div>
         <div className="list">
-          <h2>DEMO</h2>
+          <h2> <img style={{ float: 'left', marginTop: '-30px' }} src={logo} height={90}/> DEMO</h2>
           <List />
           <div style={{ textAlign: 'left', paddingLeft: '20px', paddingBottom: '20px' }}>
             当前是通过 River 简单模拟 iPhone 操作界面的案例。Gomoku 则是一个 River 实现并已打包后的五子棋案例。
