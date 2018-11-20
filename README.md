@@ -22,8 +22,10 @@ River的核心部分，即便是之后的一些widget、animation的实现也是
 - ## iContainer
       容器接口，实现该接口后即可处理事件传递和子view管理。
 
-- ## iAnimations
+- ## ~~iAnimations已过时~~
       动画接口，实现该接口后即可进行动画算法。
+      
+  > 抽象类 Animation 已取代该接口作为动画的主要实现，可以参考 Demo 中的 Loading 效果的实现。
 
 - ## iLayout
       布局接口，实现该接口可对子View制定布局。
