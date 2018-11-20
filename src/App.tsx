@@ -49,6 +49,16 @@ class App extends React.Component {
     return (
       <div className="App">
         <Title name="Hello World" />
+        <img style={{ position: 'fixed', top: '400px', left: '60px' }} src={icon} width="400"/>
+        <div style={{ background: 'white',position: 'fixed', width: '400px', right: '10px', top: '100px', padding: '10px', textAlign: 'left' }}>
+          <h2>概念</h2>
+          <div>
+          所有视图的基类都是基于 View，View 核心功能在于实现 Action 的触发和渲染的自我管理。而如果实现了接口 iContainer 的 View 同时也具有了添加子对象和对子对象渲染管理的功能。
+          <div>事实上 River 直接提供的 Container 容器对象正是实现了 iContainer 的 View。同时顶层的终极管理对象 Activity 也是 iContainer 的实现。
+          而 Loading 也正是由一个 iContainer 管理者多个 View 并通过调用实现 Animation 抽象类的 Arc 动画类来完成整套动画的展现。为了完成各种定制化需求，View 可以通过对 onDraw 的实现自我渲染，并最终得到 Loading 时颜色渐变跟随的效果。
+          </div>
+          </div>
+        </div>
         <div className="iphone">
           <div className="head">
             <div style={{ float: 'left' }}>中国移动</div>
@@ -83,16 +93,6 @@ class App extends React.Component {
           <List />
           <div style={{ textAlign: 'left', paddingLeft: '20px', paddingBottom: '20px' }}>
             当前是通过 River 简单模拟 iPhone 操作界面的案例。Gomoku 则是一个 River 实现并已打包后的五子棋案例。
-          </div>
-        </div>
-        <img style={{ position: 'fixed', top: '400px', left: '60px' }} src={icon} width="400"/>
-        <div style={{ background: 'white',position: 'fixed', width: '400px', right: '10px', top: '100px', padding: '10px', textAlign: 'left' }}>
-          <h2>概念</h2>
-          <div>
-          所有视图的基类都是基于 View，View 核心功能在于实现 Action 的触发和渲染的自我管理。而如果实现了接口 iContainer 的 View 同时也具有了添加子对象和对子对象渲染管理的功能。
-          <div>事实上 River 直接提供的 Container 容器对象正是实现了 iContainer 的 View。同时顶层的终极管理对象 Activity 也是 iContainer 的实现。
-          而 Loading 也正是由一个 iContainer 管理者多个 View 并通过调用实现 Animation 抽象类的 Arc 动画类来完成整套动画的展现。为了完成各种定制化需求，View 可以通过对 onDraw 的实现自我渲染，并最终得到 Loading 时颜色渐变跟随的效果。
-          </div>
           </div>
         </div>
       </div>
