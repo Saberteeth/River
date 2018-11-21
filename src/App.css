@@ -122,6 +122,10 @@
   border-bottom: 1px solid lightgray;
 }
 
+.firstword{
+  font-size: 24px;
+}
+
 .list {
   width: 300px;
   min-height: 200px;

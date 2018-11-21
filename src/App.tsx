@@ -49,14 +49,15 @@ class App extends React.Component {
     return (
       <div className="App">
         <Title name="Hello World" />
-        <img style={{ position: 'fixed', top: '400px', left: '60px' }} src={icon} width="400"/>
-        <div style={{ background: 'white',position: 'fixed', width: '400px', right: '10px', top: '100px', padding: '10px', textAlign: 'left' }}>
-          <h2>概念</h2>
+        <img style={{ position: 'fixed', top: '400px', left: '60px' }} src={icon} width="400" />
+        <div style={{ background: 'white', position: 'fixed', width: '400px', right: '10px', top: '100px', padding: '10px', textAlign: 'left' }}>
+          <h2>Introduction</h2>
           <div>
-          所有视图的基类都是基于 View，View 核心功能在于实现 Action 的触发和渲染的自我管理。而如果实现了接口 iContainer 的 View 同时也具有了添加子对象和对子对象渲染管理的功能。
-          <div>事实上 River 直接提供的 Container 容器对象正是实现了 iContainer 的 View。同时顶层的终极管理对象 Activity 也是 iContainer 的实现。
-          而 Loading 也正是由一个 iContainer 管理者多个 View 并通过调用实现 Animation 抽象类的 Arc 动画类来完成整套动画的展现。为了完成各种定制化需求，View 可以通过对 onDraw 的实现自我渲染，并最终得到 Loading 时颜色渐变跟随的效果。
+            <span className="firstword">T</span>here are some ensstial concepts in River. The all views is based on the class <b>View</b>. It tell the view how to render itself and bind the action. If u want have some parent abilities that u can implements <b>iContainer</b>, just like class <b>Activity</b> and <b>Container</b>.
           </div>
+          <br />
+          <div>
+          <span className="firstword">F</span>inally if u want have some animation that can extends class <b>Animation</b> and implements abstract function <b>run</b>, just like class <b>Circle</b> in Loading's demo.
           </div>
         </div>
         <div className="iphone">
@@ -70,7 +71,7 @@ class App extends React.Component {
           <User type={this.state.type} onAddUser={(e: any) => {
             const { value: name }: any = document.getElementById('name');
             const { value: phoneNumber }: any = document.getElementById('phoneNumber');
-            if (!name || !phoneNumber ) {
+            if (!name || !phoneNumber) {
               console.log('错误的号码或用户名');
               return;
             }
@@ -89,10 +90,10 @@ class App extends React.Component {
           {this.state.loading ? <LoadingView /> : null}
         </div>
         <div className="list">
-          <h2> <img style={{ float: 'left', marginTop: '-28.5px' }} src={logo} height={90}/> DEMO</h2>
+          <h2> <img style={{ float: 'left', marginTop: '-28.5px' }} src={logo} height={90} /> DEMO</h2>
           <List />
           <div style={{ textAlign: 'left', paddingLeft: '20px', paddingBottom: '20px' }}>
-            当前是通过 River 简单模拟 iPhone 操作界面的案例。Gomoku 则是一个 River 实现并已打包后的五子棋案例。
+            <span className="firstword">T</span>his demo is a fake iPhone's desktop and there have a Gomoku is created by <b>River</b> too.
           </div>
         </div>
       </div>
