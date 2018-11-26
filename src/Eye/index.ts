@@ -1,6 +1,6 @@
 import * as River from '../lib';
 
-export default class Eye extends River.view.Container {
+export default class Eye extends River.Container {
   pupil: Pupil;
   constructor(r: number) {
     super();
@@ -13,12 +13,12 @@ export default class Eye extends River.view.Container {
     let offX = 0;
     let offY = 0;
     this.onTouchEvent = (e) => {
-      if(e.touchType === River.view.View.DOWN) {
+      if(e.touchType === River.View.DOWN) {
         offX = this.pupil.left - e.clientX;
         offY = this.pupil.top - e.clientY;
       }
 
-      if(e.touchType !== River.view.View.MOVE) {
+      if(e.touchType !== River.View.MOVE) {
         return true;
       }
 
@@ -53,7 +53,7 @@ export default class Eye extends River.view.Container {
 }
 
 
-class Pupil extends River.view.View {
+class Pupil extends River.View {
   constructor(r: number) {
     super();
     this.height = this.width = r * 2;

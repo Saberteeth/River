@@ -52,7 +52,7 @@ export class AnimationUtils {
   static TRANS = new animation.Trans();
 }
 
-export class Setting extends River.view.Container {
+export class Setting extends River.Container {
   private _bg: HTMLImageElement;
   private btn: widget.Button;
   private btn2: widget.Button;

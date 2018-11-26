@@ -9,7 +9,7 @@ function colorTrend(where = 0, start = [100, 255, 0, 0.4], end = [100, 0, 255, 1
 }
 
 
-export class Loading extends River.view.Activity {
+export class Loading extends River.Activity {
   public onCreate(start =  [100, 255, 0, 0.4], end = [100, 0, 255, 1]) {
     const size = 7;
     const arr: any[] = [];
@@ -52,7 +52,7 @@ export class Loading extends River.view.Activity {
   }
 }
 
-export class Circle extends River.view.View {
+export class Circle extends River.View {
   color1: string;
   color2: string | undefined;
   constructor(w: number, h: number, color1: string, color2?: string) {

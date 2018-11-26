@@ -1,13 +1,13 @@
 
 
 import * as River from '../../lib';
-const iPen = River.utils.iPen;
+const iPen = River.IPen;
 
 module widget {
   /**
    * 提供按钮功能
    */
-  export class Button extends River.view.View {
+  export class Button extends River.View {
     _btn_bg: HTMLImageElement;
     _btn_bg_press: HTMLImageElement;
     private _clickFun: () => void;
@@ -76,10 +76,10 @@ module widget {
 
       this.addTouchEventListener((e) => {
         switch (e.touchType) {
-          case River.view.View.DOWN:
+          case River.View.DOWN:
             this.setBackGround(this._btn_bg_press);
             break;
-          case River.view.View.UP:
+          case River.View.UP:
             this.setBackGround(this._btn_bg);
 
             if (this.activity && this._clickFun && e.target == this.activity.canvas && e.offX > this.left && e.offX < this.right && e.offY > this.top && e.offY < this.bottom) {

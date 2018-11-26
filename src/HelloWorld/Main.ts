@@ -6,7 +6,7 @@ import { Setting } from './Setting';
 
 
 
-export class MainActivity extends River.view.Activity {
+export class MainActivity extends River.Activity {
   private btn: Move;
   private setting: Setting;
   private icon: widget.Button;
@@ -59,7 +59,7 @@ export class MainActivity extends River.view.Activity {
 
     this.setting.addTouchEventListener(e=>{
 
-      if(e.touchType == River.view.View.UP) {
+      if(e.touchType == River.View.UP) {
         this.setting.closeItem(this.setting.left, this.setting.top, this.btn.left, this.btn.top);
       }
       return true;
