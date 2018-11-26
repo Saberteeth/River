@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: #222;
 }
 
 .loading_txt {
@@ -40,12 +41,8 @@
   }
 }
 
-/* #helloworld {
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.80);
-  border: 1px solid black;
-} */
 .iphone {
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.80);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.80);
   border: 1px solid black;
   display: inline-block;
   background: url(./bgphone.jpeg);
@@ -145,11 +142,21 @@
 
 .list > ul {
   text-align: left;
-  padding-right: 40px;
+  padding-right: 10px;
+  list-style: none;
+  padding-top: 10px;
+
+}
+
+.list > ul > li {
+  padding: 2px;
+  border-bottom: 1px solid lightgray;
+}
+.list > ul > li:hover{
+  background: rgba(126, 184, 223, .4);
 }
 
 .list > ul > li a {
   text-decoration: none;
-  color: black;
+  color: #222;
 }
-

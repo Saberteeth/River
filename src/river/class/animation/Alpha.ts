@@ -1,11 +1,13 @@
-import iAnimations from '../../interface/iAnimations';
-import river from '../index';
+import iAnimations from '../../../lib/interface/iAnimations';
 
+/**
+ * @Deprecated
+ */
 export default class Alpha implements iAnimations {
   private runTime: number = 0;
   private runID: NodeJS.Timer;
 
-  play(start: number, end: number, time: number, v: river.View) {
+  play(start: number, end: number, time: number, v: any) {
       clearTimeout(this.runID);
       this.runTime = 0;
       var off = end - start;
@@ -14,9 +16,7 @@ export default class Alpha implements iAnimations {
       this.run(speed, v, off, end);
   }
 
-
-
-  private run(speed: number, v: river.View, off: number, end: number) {
+  private run(speed: number, v: any, off: number, end: number) {
       this.runID = setTimeout(() => {
           v.alpha += speed;
           this.runTime += speed;
@@ -34,7 +34,5 @@ export default class Alpha implements iAnimations {
       }, 10);
   }
 
-  // (v: view.View) => void
   over: any;
-
 }

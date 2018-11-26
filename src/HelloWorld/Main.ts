@@ -1,12 +1,12 @@
-import river from '../river/class';
+import * as River from '../lib';
 import widget from '../river/widget/widget';
 import { Move, AnimationUtils } from './Move';
 import { Setting } from './Setting';
-import View from 'src/river/class/view/View';
+// import Eye from '../Eye';
 
 
 
-export class MainActivity extends river.Activity {
+export class MainActivity extends River.view.Activity {
   private btn: Move;
   private setting: Setting;
   private icon: widget.Button;
@@ -59,14 +59,19 @@ export class MainActivity extends river.Activity {
 
     this.setting.addTouchEventListener(e=>{
 
-      if(e.touchType == View.UP) {
+      if(e.touchType == River.view.View.UP) {
         this.setting.closeItem(this.setting.left, this.setting.top, this.btn.left, this.btn.top);
       }
       return true;
     });
 
+    // const eye = new Eye(50);
+
+
+
     this.addChild(this.icon);
     this.addChild(this.btn);
+    // this.addChild(eye);
     AnimationUtils.ALPHA.play(0, 0.5, 1000, this.btn);
   }
 

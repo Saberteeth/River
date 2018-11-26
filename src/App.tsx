@@ -90,9 +90,9 @@ class App extends React.Component {
           {this.state.loading ? <LoadingView /> : null}
         </div>
         <div className="list">
-          <h2> <img style={{ float: 'left', marginTop: '-28.5px' }} src={logo} height={90} /> DEMO</h2>
+          <h2> <img style={{ float: 'left', marginTop: '-28.5px' }} src={logo} height={90} />Other</h2>
           <List />
-          <div style={{ textAlign: 'left', paddingLeft: '20px', paddingBottom: '20px' }}>
+          <div style={{ textAlign: 'left', padding: '20px', paddingTop: '0px' }}>
             <span className="firstword">T</span>his demo is a fake iPhone's desktop and there have a Gomoku is created by <b>River</b> too.
           </div>
         </div>

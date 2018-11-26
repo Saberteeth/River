@@ -1,6 +1,6 @@
 
-import river from '../river/class';
-import iAnimations from '../river/interface/iAnimations';
+import * as River from '../lib';
+import iAnimations from '../lib/interface/iAnimations';
 import animation from '../river/class/animation';
 import widget from '../river/widget/widget';
 
@@ -9,7 +9,7 @@ class Change implements iAnimations {
   private runTime: number = 0;
   private runID: NodeJS.Timer;
   over: any;
-  play(w: number, h: number, toW: number, toH: number, time: number, v: river.View) {
+  play(w: number, h: number, toW: number, toH: number, time: number, v: any) {
     clearTimeout(this.runID);
     this.runTime = 0;
     var offW = toW - w;
@@ -24,7 +24,7 @@ class Change implements iAnimations {
     this.run(speedW, speedH, v, offW, toW, toH);
   }
 
-  private run(speedW: number, speedH: number, v: river.View, off: number, toW: number, toH: number) {
+  private run(speedW: number, speedH: number, v: any, off: number, toW: number, toH: number) {
 
     this.runID = setTimeout(() => {
       v.width += speedW;
@@ -52,7 +52,7 @@ export class AnimationUtils {
   static TRANS = new animation.Trans();
 }
 
-export class Setting extends river.Container {
+export class Setting extends River.view.Container {
   private _bg: HTMLImageElement;
   private btn: widget.Button;
   private btn2: widget.Button;

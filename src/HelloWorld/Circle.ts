@@ -1,7 +1,7 @@
 
-import { Animation } from '../river/class/animation/Animation';
+import * as River from '../lib';
 
-export default class Arc extends Animation {
+export default class Arc extends River.animation.Animation {
   constructor(x: number, y: number, raduis: number) {
     super();
     this.x = x;

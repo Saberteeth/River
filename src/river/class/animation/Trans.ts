@@ -1,13 +1,14 @@
-import iAnimations from '../../interface/iAnimations';
-import river from '../index';
-
+import iAnimations from '../../../lib/interface/iAnimations';
+/**
+ * @Deprecated
+ */
 export default class Trans implements iAnimations {
   private runX: number = 0;
   private runY: number = 0;
   private runID: NodeJS.Timer;
 
-  over: (v: river.View) => void;
-  play(startX: number, endX: number, startY: number, endY: number, time: number, v: river.View) {
+  over: (v: any) => void;
+  play(startX: number, endX: number, startY: number, endY: number, time: number, v: any) {
     if (this.runX == 0 && this.runY == 0) {
       var offX = endX - startX;
       var offY = endY - startY;
@@ -22,7 +23,7 @@ export default class Trans implements iAnimations {
     }
   }
 
-  private run(sX: number, sY: number, v: river.View, offX: number, offY: number, endX: number, endY: number) {
+  private run(sX: number, sY: number, v: any, offX: number, offY: number, endX: number, endY: number) {
 
     this.runID = setTimeout(() => {
       v.top += sY;

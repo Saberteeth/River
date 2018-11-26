@@ -1,20 +1,20 @@
 
 
-import river from '../class';
-import iPen from '../class/iPen';
+import * as River from '../../lib';
+const iPen = River.utils.iPen;
 
 module widget {
   /**
    * 提供按钮功能
    */
-  export class Button extends river.View {
+  export class Button extends River.view.View {
     _btn_bg: HTMLImageElement;
     _btn_bg_press: HTMLImageElement;
     private _clickFun: () => void;
     private _txt: string = 'Button';
     private _txtColor: string = 'black';
     private _txtFont: number = 14;
-    private _pen: iPen;
+    private _pen: any;
 
 
     set txt(s: string) {
@@ -76,10 +76,10 @@ module widget {
 
       this.addTouchEventListener((e) => {
         switch (e.touchType) {
-          case river.View.DOWN:
+          case River.view.View.DOWN:
             this.setBackGround(this._btn_bg_press);
             break;
-          case river.View.UP:
+          case River.view.View.UP:
             this.setBackGround(this._btn_bg);
 
             if (this.activity && this._clickFun && e.target == this.activity.canvas && e.offX > this.left && e.offX < this.right && e.offY > this.top && e.offY < this.bottom) {

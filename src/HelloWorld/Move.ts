@@ -1,5 +1,5 @@
 
-import river from '../river/class';
+import * as River from '../lib';
 import animation from '../river/class/animation';
 
 export class AnimationUtils {
@@ -7,7 +7,7 @@ export class AnimationUtils {
   static TRANS = new animation.Trans();
 }
 
-export class Move extends river.View {
+export class Move extends River.view.View {
   private _bg: HTMLImageElement;
   private _offLeft: number;
   private _offTop: number;
@@ -34,16 +34,16 @@ export class Move extends river.View {
     this._bg.src = 'move_press.png';
     this.setBackGround(this._bg);
 
-    this.addTouchEventListener((e: river.TouchEvent) => {
+    this.addTouchEventListener((e: any) => {
       if (!this.container) return false;
       switch (e.touchType) {
-        case river.View.DOWN:
+        case River.view.View.DOWN:
           this._offLeft = e.clientX - this.left;
           this._offTop = e.clientY - this.top;
           AnimationUtils.ALPHA.play(0.5, 1, 150, this);
           this._begin = new Date().getTime();
           break;
-        case river.View.MOVE:
+        case River.view.View.MOVE:
           var l = e.clientX - this._offLeft;
           var t = e.clientY - this._offTop;
           l = l < 0 ? 0 : l;
@@ -55,7 +55,7 @@ export class Move extends river.View {
           this.left = l;
           this.top = t;
           break;
-        case river.View.UP:
+        case River.view.View.UP:
           AnimationUtils.ALPHA.play(1, 0.5, 150, this);
           if(new Date().getTime() - this._begin < 200) {
             this.onClick();

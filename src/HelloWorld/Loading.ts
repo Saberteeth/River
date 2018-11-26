@@ -1,4 +1,4 @@
-import river from '../river/class';
+import * as River from '../lib';
 import Arc from './Circle';
 
 function colorTrend(where = 0, start = [100, 255, 0, 0.4], end = [100, 0, 255, 1]) {
@@ -9,7 +9,7 @@ function colorTrend(where = 0, start = [100, 255, 0, 0.4], end = [100, 0, 255, 1
 }
 
 
-export class Loading extends river.Activity {
+export class Loading extends River.view.Activity {
   public onCreate(start =  [100, 255, 0, 0.4], end = [100, 0, 255, 1]) {
     const size = 7;
     const arr: any[] = [];
@@ -52,7 +52,7 @@ export class Loading extends river.Activity {
   }
 }
 
-export class Circle extends river.View {
+export class Circle extends River.view.View {
   color1: string;
   color2: string | undefined;
   constructor(w: number, h: number, color1: string, color2?: string) {
@@ -77,14 +77,6 @@ export class Circle extends river.View {
       const x2 = - bL * toSmale;
       const y2 = bT * toSmale;
       return [ x1, y1, x2, y2 ];
-
-
-
-      // if (l > 0 && t > 0) return [0, this.height, this.width, 0];
-      // if (l < 0 && t > 0) return [0, 0, this.width, this.height];
-
-      // if (l < 0 && t < 0) return [this.width, 0, 0, this.height];
-      // if (l > 0 && t < 0) return [this.width, this.height, 0, 0];
     }
     return [0, 0, this.width, this.height];
   }
